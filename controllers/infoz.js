@@ -28,9 +28,18 @@ const index = async (req, res) => {
     )
 }
 
+const showInfo = async (req, res) => {
+    let foundInfo = await Info.findById(req.params.infoId)
+
+    res.render('info/ShowInfo.ejs', {
+        foundInfo: foundInfo
+    })
+}
+
 module.exports = {
     showNewForm,
     create,
     index,
+    showInfo,
 
 }

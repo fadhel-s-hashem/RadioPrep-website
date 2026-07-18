@@ -13,9 +13,11 @@
     
 <% allInfo.forEach((item) => { %>
     <li> <%=item.name%> </li>
-    <li> <%= item.radiologyUnit%> </li>
-    <li> <%= item.duration%> </li>
-    <button><a href=""></a> Click for details</button>
+    <li> radiology Unit: <%= item.radiologyUnit%> </li>
+    <li> expected Examination time: <%= item.duration%> </li>
+    <form action="/info/<%= item._id%>">
+    <button type="submit"><a href="/info/<%= item._id%>"></a> Click for details</button>
+   </form>
     <hr>
 <%})%>
 
