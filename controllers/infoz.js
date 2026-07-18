@@ -18,11 +18,19 @@ const create = async (req,res) => {
 
     let createInfo = await Info.create(infoData)
     res.send(req.body)
+}
 
+const index = async (req, res) => {
+    let allInfo = await Info.find()
+
+    res.render('info/index.ejs', 
+       {allInfo: allInfo} 
+    )
 }
 
 module.exports = {
     showNewForm,
     create,
+    index,
 
 }

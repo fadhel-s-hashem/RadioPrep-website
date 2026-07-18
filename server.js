@@ -61,7 +61,7 @@ app.use(
 app.use(passUserToView);
 
 
-//Route==authCtrl=================================================
+//Route==authCtrl=========================================
 app.get("/", authCtrl.home);
 app.get("/auth/sign-up", authCtrl.showSignUpForm);
 app.post("/auth/sign-up", authCtrl.signUp);
@@ -71,9 +71,10 @@ app.delete("/auth/sign-out", authCtrl.signOut);
 
 // app.get("/dashboard", isSignedIn, authCtrl.dashboard);
 
-//Route==infoCtrl=================================================
+//Route==infoCtrl=========================================
 app.get('/info/newInfo', infoCtrl.showNewForm)
 app.post('/info', infoCtrl.create)
+app.get('/info/index', infoCtrl.index)
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
