@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
     CPR: {
         type: Number,
         require: true,
+        trim: true,
         unique: true,
         minlength: 9,
         maxlength: 9
@@ -19,6 +20,8 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+        trim: true,
+        minlength: 8,
     },
 
     staff: {
