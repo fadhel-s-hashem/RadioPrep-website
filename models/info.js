@@ -2,6 +2,11 @@ const mongoose = require("mongoose")
 
 const infoSchema = new mongoose.Schema({
 
+    name: {
+        type:String,
+        require:true,
+    },
+
     image: {
         type: String,
         required: true,
@@ -17,6 +22,7 @@ const infoSchema = new mongoose.Schema({
     duration: {
         type: Number,
         required: true,
+        min:0,
     },
 
     contraindicate: {

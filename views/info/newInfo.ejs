@@ -1,0 +1,45 @@
+<form action="" method="post">
+
+    <label for="name"> Examination name</label>
+    <input 
+    type="text" 
+    name="name" 
+    id="name"
+    required>
+
+    <label for="image"> The image will match the unit</label>
+    <input type="text" 
+    name="image" 
+    id="image"
+    value=""
+    >
+
+    <label for="duration"> expected duration</label>
+    <input 
+    type="number"
+     name="duration"
+      id="duration"
+      required>
+
+    <label for="radiologyUnit">Select Radiology Unit:</label>
+<select name="radiologyUnit" id="radiologyUnit" required>
+
+    <option value="xray">X-Ray</option>
+    <option value="CT">CT</option>
+    <option value="MRI">MRI</option>
+    <option value="US">Ultrasound (US)</option>
+    <option value="fluor">Fluoroscopy (fluor)</option>
+    <option value="BMD">Bone Mineral Density (BMD)</option>
+
+</select>
+
+<label for="generalInfo">Add General Info:</label>
+<textarea 
+name="generalInfo"
+ id="generalInfo" 
+ required>
+</textarea>
+
+<button type="submit"> Creat info card </button>
+
+</form>
