@@ -51,6 +51,12 @@ const signUp = async (req, res) => {
     });
 };
 
+const showSignInForm = (req, res) => {
+    res.render("auth/sign-in.ejs", {
+        user: req.session.user,
+    });
+};
+
 
 
 
@@ -58,7 +64,7 @@ module.exports = {
     home,
     showSignUpForm,
     signUp,
-    // showSignInForm,
+    showSignInForm,
     // signIn,
     // signOut,
     // dashboard,
