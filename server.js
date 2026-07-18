@@ -73,6 +73,7 @@ app.delete("/auth/sign-out", authCtrl.signOut);
 
 //Route==infoCtrl=================================================
 app.get('/info/newInfo', infoCtrl.showNewForm)
+app.post('/info', infoCtrl.create)
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

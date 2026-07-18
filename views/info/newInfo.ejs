@@ -1,4 +1,4 @@
-<form action="" method="post">
+<form action="/info" method="post">
 
     <label for="name"> Examination name</label>
     <input 
@@ -6,23 +6,24 @@
     name="name" 
     id="name"
     required>
-
+<br>
     <label for="image"> The image will match the unit</label>
     <input type="text" 
     name="image" 
     id="image"
     value=""
     >
-
+<br>
     <label for="duration"> expected duration</label>
     <input 
     type="number"
      name="duration"
       id="duration"
       required>
+<br>
 
-    <label for="radiologyUnit">Select Radiology Unit:</label>
-<select name="radiologyUnit" id="radiologyUnit" required>
+    <label for="radiologyUnit">Select Radiology Unit:   </label>
+    <select name="radiologyUnit" id="radiologyUnit"      required>
 
     <option value="xray">X-Ray</option>
     <option value="CT">CT</option>
@@ -31,15 +32,15 @@
     <option value="fluor">Fluoroscopy (fluor)</option>
     <option value="BMD">Bone Mineral Density (BMD)</option>
 
-</select>
-
-<label for="generalInfo">Add General Info:</label>
-<textarea 
-name="generalInfo"
- id="generalInfo" 
- required>
-</textarea>
-
+    </select>
+<br>
+    <label for="generalInfo">Add General Info:</label>
+    <textarea 
+    name="generalInfo"
+    id="generalInfo" 
+    required>
+    </textarea>
+<br>
 <button type="submit"> Creat info card </button>
 
 </form>
