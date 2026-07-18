@@ -15,16 +15,16 @@ const showSignUpForm = (req, res) => {
 
 const signUp = async (req, res) => {
     const CPRInDatabase = await User.findOne({
-        cpr: req.body.CPR,
+        CPR: req.body.CPR,
     });
 
     if (CPRInDatabase) {
-        return res.send("An account has already been created ");
+        return res.send("An account has already been created before");
     }
 
-    // if (req.body.password !== req.body.confirmPassword) {
-    // return res.send("Password and Confirm Password must match");
-    // }
+    if (req.body.password !== req.body.confirmPassword) {
+    return res.send("Password and Confirm Password must match");
+    }
 
     if (req.body.staff === 'on') {
         req.body.staff = true
@@ -57,6 +57,34 @@ const showSignInForm = (req, res) => {
     });
 };
 
+const signIn = async (req, res) => {
+    const CPRInDatabase = await User.findOne({
+        CPR: req.body.CPR,
+    });
+
+    if (!CPRInDatabase) {
+        return res.send("User does not exist");
+    }
+
+    const validPassword = await bcrypt.compare(
+        req.body.password,
+        CPRInDatabase.password
+    );
+
+    if (!validPassword) {
+        return res.send("Login failed");
+    }
+
+    req.session.user = {
+        CPR: CPRInDatabase.CPR,
+        id: CPRInDatabase.id,
+    };
+
+    req.session.save(() => {
+        res.redirect("/");
+    });
+};
+
 
 
 
@@ -65,7 +93,7 @@ module.exports = {
     showSignUpForm,
     signUp,
     showSignInForm,
-    // signIn,
+    signIn,
     // signOut,
     // dashboard,
 };
