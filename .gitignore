@@ -1,0 +1,7 @@
+﻿node_modules
+.env
+config
+controllers
+middleware
+models
+auth
