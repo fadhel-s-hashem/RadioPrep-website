@@ -1,12 +1,13 @@
 ﻿<%- include("./partials/nav.ejs") %>
 
 <main>
-    <h1>Authentication App</h1>
+    <h1>RadioPrep</h1>
+    <h2></h2>
 
     <% if (user) { %>
         <p>Welcome, <%= user.username %>.</p>
     <% } else { %>
-        <p>Your Express, MongoDB, Mongoose, EJS, and session setup is ready.</p>
+        <p>Please Sign-in or Sign-up if you dont have an acount</p>
     <% } %>
 </main>
 </body>

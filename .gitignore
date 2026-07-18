@@ -1,6 +1,5 @@
 ﻿node_modules
 .env
 config
-controllers
 middleware
-auth
+sign-in.ejs
