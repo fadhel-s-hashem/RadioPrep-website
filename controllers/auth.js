@@ -85,6 +85,13 @@ const signIn = async (req, res) => {
     });
 };
 
+const signOut = (req, res) => {
+    req.session.destroy(() => {
+        res.redirect("/");
+    });
+};
+
+
 
 
 
@@ -94,6 +101,6 @@ module.exports = {
     signUp,
     showSignInForm,
     signIn,
-    // signOut,
+    signOut,
     // dashboard,
 };

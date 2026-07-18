@@ -6,6 +6,9 @@
 
     <% if (user) { %>
         <p>Welcome, <%= user.username %>.</p>
+        <form action="auth/sign-out?_method=DELETE" method="post">
+      <button type="submit"> sign out <output></output></button>
+      </form>
     <% } else { %>
         <p>Please Sign-in or Sign-up if you dont have an acount</p>
     <% } %>
