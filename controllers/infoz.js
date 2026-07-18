@@ -17,7 +17,7 @@ const create = async (req,res) => {
     // infoData.contraindicate = req.body.contraindicate
 
     let createInfo = await Info.create(infoData)
-    res.send(req.body)
+    res.redirect('/info/index')
 }
 
 const index = async (req, res) => {
@@ -36,10 +36,17 @@ const showInfo = async (req, res) => {
     })
 }
 
+const deleteInfo = async (req, res) => {
+    let deleteInfo = await Info.findByIdAndDelete(req.params.infoId)
+    res.redirect('/info/index')
+
+}
+
 module.exports = {
     showNewForm,
     create,
     index,
     showInfo,
+    deleteInfo,
 
 }
