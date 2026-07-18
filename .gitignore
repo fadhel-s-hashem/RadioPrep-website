@@ -3,5 +3,4 @@
 config
 controllers
 middleware
-models
 auth
