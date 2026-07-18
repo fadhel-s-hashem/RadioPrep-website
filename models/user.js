@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     },
 
     CPR: {
-        type: Number,
+        type: String,
         require: true,
         trim: true,
         unique: true,
@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true,
         minlength: 8,
+        
     },
 
     staff: {

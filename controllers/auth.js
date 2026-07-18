@@ -18,13 +18,18 @@ const signUp = async (req, res) => {
         CPR: req.body.CPR,
     });
 
+    // unique CPR 
     if (CPRInDatabase) {
         return res.send("An account has already been created before");
     }
-
+    
     if (req.body.password !== req.body.confirmPassword) {
     return res.send("Password and Confirm Password must match");
     }
+
+    if (isNaN(req.body.CPR)) {
+    return res.send("CPR should be only numbers");
+}
 
     if (req.body.staff === 'on') {
         req.body.staff = true
