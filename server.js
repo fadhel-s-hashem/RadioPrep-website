@@ -24,6 +24,7 @@ const upload = require("./config/multer");
 
 //to import the controller
 const authCtrl = require("./controllers/auth.js");
+const infoCtrl = require("./controllers/infoz.js");
 
 
 
@@ -60,7 +61,7 @@ app.use(
 app.use(passUserToView);
 
 
-//Route ===============================================================
+//Route==authCtrl=================================================
 app.get("/", authCtrl.home);
 app.get("/auth/sign-up", authCtrl.showSignUpForm);
 app.post("/auth/sign-up", authCtrl.signUp);

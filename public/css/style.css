@@ -7,11 +7,16 @@ body {
     min-height: 100dvh;
     font-family: Arial, sans-serif;
     color: rgb(31, 41, 55);
-    background-color: rgb(243, 244, 246);
+    background-color: white;
 }
 
-main h1,p {
-    text-align: center;
+main h1 {
+    text-align: center; 
+    color: rgb(0, 89, 172);
+}
+
+main p{
+   text-align: center;  
 }
 
 .site-nav {
