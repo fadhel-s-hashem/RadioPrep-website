@@ -77,6 +77,7 @@ app.post('/info', infoCtrl.create)
 app.get('/info/index', infoCtrl.index)
 app.get('/info/:infoId' , infoCtrl.showInfo)
 app.delete('/info/:infoId' , infoCtrl.deleteInfo)
+app.get('/info/:infoId/editInfo', infoCtrl.editInfo)
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

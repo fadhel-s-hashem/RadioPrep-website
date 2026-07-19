@@ -42,11 +42,24 @@ const deleteInfo = async (req, res) => {
 
 }
 
+const editInfo = async (req,res) => {
+   
+    let updatedInfo = await Info.findById(req.params.infoId)
+    res.render('info/editInfo.ejs', 
+      { foundInfo: updatedInfo }
+    )
+}
+
+const updatedInfo = async (req,res) => {
+    const editedInfo = {}
+    
+
+}
 module.exports = {
     showNewForm,
     create,
     index,
     showInfo,
     deleteInfo,
-
+    editInfo,
 }

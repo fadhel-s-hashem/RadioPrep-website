@@ -7,6 +7,8 @@
 </head>
 <body>
 
+    <h1> Edit the card with examination name <%= foundInfo.name%></h1>
+
     <form action="/info" method="post">
 
     <label for="name"> Examination name</label>
@@ -14,13 +16,14 @@
     type="text" 
     name="name" 
     id="name"
+    value="<%= foundInfo.name%>"
     required>
 <br>
     <label for="image"> The image will match the unit</label>
     <input type="text" 
     name="image" 
     id="image"
-    value=""
+    value="<%= foundInfo.image%> "
     >
 <br>
     <label for="duration"> expected duration</label>
@@ -28,12 +31,14 @@
     type="number"
      name="duration"
       id="duration"
+      value="<%= foundInfo.duration%>"
       required>
 <br>
 
     <label for="radiologyUnit">Select Radiology Unit:   </label>
-    <select name="radiologyUnit" id="radiologyUnit"      required>
-
+    <select name="radiologyUnit" id="radiologyUnit" required>
+    
+    <option value="<%= foundInfo.radiologyUnit%>"><%= foundInfo.radiologyUnit%></option>    
     <option value="general-xray">general-xray</option>
     <option value="CT">CT</option>
     <option value="MRI">MRI</option>
@@ -47,10 +52,11 @@
     <textarea 
     name="generalInfo"
     id="generalInfo" 
+    
     required>
     </textarea>
 <br>
-<button type="submit"> Creat info card </button>
+<button type="submit"> edit info card </button>
 
 </form>
     

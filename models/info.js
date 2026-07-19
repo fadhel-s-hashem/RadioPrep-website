@@ -15,7 +15,6 @@ const infoSchema = new mongoose.Schema({
     radiologyUnit: {
         type: String,
         enum: ['general-xray','CT','MRI','US','fluor','BMD'],
-        default: 'xray',
         required: true,
     },
 

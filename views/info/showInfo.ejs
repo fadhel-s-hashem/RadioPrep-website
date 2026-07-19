@@ -10,12 +10,13 @@
     <form action="/info/<%= foundInfo._id%>?_method=DELETE" method="post">
         <h1> <%= foundInfo.name%> </h1>
         <p><%= foundInfo.radiologyUnit%> </p>
-        <p><%= foundInfo.radiologyUnit%> </p>
         <p><%= foundInfo.duration%> </p>
         <p><%= foundInfo.generalInfo%> </p>
         <br>
         <button type="submit"> Delete info card</button>
     </form>
     
+    <button><a href="/info/<%= foundInfo._id%>/editInfos"> Edit card</a>
+    </button>
 </body>
 </html>
