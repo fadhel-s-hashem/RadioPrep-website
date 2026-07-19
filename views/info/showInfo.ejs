@@ -13,14 +13,24 @@
         <p><%= foundInfo.radiologyUnit%> </p>
         <p><%= foundInfo.duration%> </p>
         <p><%= foundInfo.generalInfo%> </p>
+        
+        <% foundInfo.notice.forEach(function(item) { %>
+          <%if (item !== '') { %>
+             <ul>
+        <li><%= item %></li>
+        </ul>
+           <% }%>
+        <% }) %>
+         
+        
         <br>
         <button type="submit"> Delete info card</button>
     </form>
     
-    <button><a href="/info/<%= foundInfo._id%>/editInfo"> Edit card</a>
-    </button>
+    <a href="/info/<%= foundInfo._id%>/editInfo"> Edit card</a>
     
-    <button><a href="/info/index"> all Cards</a>
-    </button>
+    
+    <a href="/info/index"> all Cards</a>
+    
 </body>
 </html>

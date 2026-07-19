@@ -14,7 +14,7 @@ const create = async (req,res) => {
     infoData.duration = req.body.duration
     infoData.generalInfo = req.body.generalInfo
     infoData.image = req.body.image
-    // infoData.contraindicate = req.body.contraindicate
+    infoData.notice = req.body.notice
 
     let createInfo = await Info.create(infoData)
     res.redirect('/info/index')
@@ -30,6 +30,8 @@ const index = async (req, res) => {
 
 const showInfo = async (req, res) => {
     let foundInfo = await Info.findById(req.params.infoId)
+    // foundInfo.push( req.body.notice)
+    // await foundInfo.save()
 
     res.render('info/ShowInfo.ejs', {
         foundInfo: foundInfo
@@ -58,7 +60,7 @@ const updatedInfo = async (req,res) => {
     editedInfo.duration = req.body.duration
     editedInfo.generalInfo = req.body.generalInfo
     editedInfo.image = req.body.image
-    // editedInfo.contraindicate = req.body.contraindicate
+    editedInfo.notice = req.body.notice
 
     await Info.findByIdAndUpdate(req.params.infoId , editedInfo, {new: true})
     res.redirect(`/info/${req.params.infoId}`)
@@ -72,3 +74,10 @@ module.exports = {
     editInfo,
     updatedInfo,
 }
+
+//   <% foundInfo.forEach((item) => { %>
+//             if (item.notice !== ''){
+                
+//                 <p><%= item.notice%> </p>
+//             }
+//        <% }) %> 

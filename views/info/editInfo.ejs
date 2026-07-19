@@ -19,7 +19,6 @@
     value="<%= foundInfo.name%>"
     required>
 
-
 <br>
     <label for="duration"> expected duration</label>
     <input 
@@ -43,13 +42,21 @@
 
     </select>
 <br>
+
+<label for="notice"> important notice</label>
+    <input type="text" name="notice" id="notice" value="<%= foundInfo.notice%>">
+    <input type="text" name="notice" id="notice">
+    <input type="text" name="notice" id="notice">
+    <input type="text" name="notice" id="notice">
+
+<br>
     <label for="generalInfo">Add General Info:</label>
     <textarea 
     name="generalInfo"
     id="generalInfo" 
     
     required>
-    <%= foundInfo.generalInfo %>
+<%= foundInfo.generalInfo %>
     </textarea>
 <br>
 <button type="submit"> edit info card </button>

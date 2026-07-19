@@ -25,10 +25,10 @@ const infoSchema = new mongoose.Schema({
         min:0,
     },
 
-    // contraindicate: [{
-    //     type: String,
-    //     required: true,
-    // }],
+    notice: [{
+        type: String,
+        // required: true,
+    }],
 
     generalInfo: {
         type: String,
