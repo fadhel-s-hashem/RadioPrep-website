@@ -52,8 +52,16 @@ const editInfo = async (req,res) => {
 
 const updatedInfo = async (req,res) => {
     const editedInfo = {}
-    
 
+     editedInfo.name = req.body.name
+    editedInfo.radiologyUnit = req.body.radiologyUnit
+    editedInfo.duration = req.body.duration
+    editedInfo.generalInfo = req.body.generalInfo
+    editedInfo.image = req.body.image
+    // editedInfo.contraindicate = req.body.contraindicate
+
+    await Info.findByIdAndUpdate(req.params.infoId , editedInfo, {new: true})
+    res.redirect(`/info/${req.params.infoId}`)
 }
 module.exports = {
     showNewForm,
@@ -62,4 +70,5 @@ module.exports = {
     showInfo,
     deleteInfo,
     editInfo,
+    updatedInfo,
 }

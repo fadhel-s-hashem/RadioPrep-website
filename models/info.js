@@ -1,4 +1,5 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const { array } = require("../config/multer");
 
 const infoSchema = new mongoose.Schema({
 
@@ -9,7 +10,7 @@ const infoSchema = new mongoose.Schema({
 
     image: {
         type: String,
-        required: true,
+        
     },
 
     radiologyUnit: {
@@ -24,10 +25,10 @@ const infoSchema = new mongoose.Schema({
         min:0,
     },
 
-    // contraindicate: {
-    //     type: [String],
-    //     // required: true,
-    // },
+    // contraindicate: [{
+    //     type: String,
+    //     required: true,
+    // }],
 
     generalInfo: {
         type: String,

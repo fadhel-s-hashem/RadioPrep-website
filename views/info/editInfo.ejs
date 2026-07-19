@@ -9,7 +9,7 @@
 
     <h1> Edit the card with examination name <%= foundInfo.name%></h1>
 
-    <form action="/info" method="post">
+    <form action="/info/<%= foundInfo._id%>?_method=PUT" method="post">
 
     <label for="name"> Examination name</label>
     <input 
@@ -18,13 +18,8 @@
     id="name"
     value="<%= foundInfo.name%>"
     required>
-<br>
-    <label for="image"> The image will match the unit</label>
-    <input type="text" 
-    name="image" 
-    id="image"
-    value="<%= foundInfo.image%> "
-    >
+
+    
 <br>
     <label for="duration"> expected duration</label>
     <input 
