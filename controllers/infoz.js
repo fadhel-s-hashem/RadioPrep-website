@@ -32,7 +32,7 @@ const index = async (req, res) => {
 const showInfo = async (req, res) => {
     let foundInfo = await Info.findById(req.params.infoId)
 
-    const comments = await Comment.find({ info: req.params.infoId }).populate('author');
+    const comments = await Info.find({ info: req.params.infoId }).populate('owner').populate("comments.author")
     // foundInfo.push( req.body.notice)
     // await foundInfo.save()
 

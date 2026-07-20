@@ -24,8 +24,7 @@
         </ul>
            <% }%>
         <% }) %>
-         
-        
+
         <br>
         <button type="submit"> Delete info card</button>
     </form>
@@ -54,6 +53,23 @@
 
     </section>
     <hr>
+
+  <section>
+    <h2>Comments</h2>
+
+    <% if (foundInfo.comments.length > 0) { %>
+        <% foundInfo.comments.forEach(function(comment) { %>
+            <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                <p><strong><%= comment.author ? comment.author.username : 'Anonymous' %></strong> (<%= comment.commentType %>):</p>
+                <p><%= comment.text %></p>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <p>No comments yet.</p>
+    <% } %>
+</section>
+
+<hr>
     <a href="/info/<%= foundInfo._id%>/editInfo"> Edit card</a>
     <a href="/info/index"> all Cards</a>
     

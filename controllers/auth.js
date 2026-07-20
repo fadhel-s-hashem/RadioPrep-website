@@ -44,10 +44,13 @@ const signUp = async (req, res) => {
     //     password: hashedPassword,
     // };
 
+    // Save user to DB
     const user = await User.create(req.body);
 
+    // Save consistent session
     req.session.user = {
         username: user.username,
+        CPR: user.CPR,
         _id: user._id,
     };
 
@@ -80,7 +83,9 @@ const signIn = async (req, res) => {
         return res.send("Login failed");
     }
 
+    // Store consistent session
     req.session.user = {
+        username: CPRInDatabase.username,
         CPR: CPRInDatabase.CPR,
         _id: CPRInDatabase._id,
     };
