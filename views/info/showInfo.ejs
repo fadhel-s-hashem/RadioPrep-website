@@ -27,6 +27,7 @@
         <button type="submit"> Delete info card</button>
     </form>
 
+    <hr>
     <section>
         <h2>Commets about this Examination</h2>
 
@@ -34,18 +35,25 @@
 
             <label for="commentType"> your comment is </label>
             <select name="commentType" id="commentType">
+                <option value="question"> question</option>
+                <option value="suggestion">suggestion </option>
+                <option value="complaint"> complaint</option>
+                <option value="urgent"> urgent matter </option>
 
-                
+                <label for="text"> write a comeent</label>
+                <textarea name="text" rows="4" required></textarea>
+
+
             </select>
 
             <textarea name="text" rows="4" required></textarea>
-            <button type="submit"> Ask Questions</button>
+            <button type="submit"> Add comment</button>
 
         </form>
 
 
     </section>
-    
+    <hr>
     <a href="/info/<%= foundInfo._id%>/editInfo"> Edit card</a>
     <a href="/info/index"> all Cards</a>
     

@@ -82,7 +82,7 @@ app.get('/info/:infoId/editInfo', infoCtrl.editInfo)
 app.put('/info/:infoId' , infoCtrl.updatedInfo)
 
 //Route==commentCtrl==================================
-app.post('/info/:infoId/comment'  , commentCtrl.createComment)
+app.post('/info/:infoId/comment' , commentCtrl.createComment)
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
