@@ -14,6 +14,7 @@ const commentData = {}
     // await foundInfo.save()
 
     // res.redirect(`/info/${req.params.infoId}`)
+    let createdComment = await Comment.create(commentData)
     res.send(' comment test work')
 
 }
