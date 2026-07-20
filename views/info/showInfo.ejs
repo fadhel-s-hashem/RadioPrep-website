@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<%- include("../partials/nav.ejs") %>
 <body>
      <% if (user) { %>
         <p>Welcome, <%= user.username %>.</p>
@@ -26,6 +27,7 @@
         <% }) %>
 
         <br>
+         <button> <a href="/info/<%= foundInfo._id%>/editInfo"> Edit card</a></button>
         <button type="submit"> Delete info card</button>
     </form>
 
@@ -58,19 +60,20 @@
     <h2>Comments</h2>
 
     <% if (foundInfo.comments.length > 0) { %>
-        <% foundInfo.comments.forEach(function(comment) { %>
-            <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
-                <p><strong><%= comment.author ? comment.author.username : 'Anonymous' %></strong> (<%= comment.commentType %>):</p>
-                <p><%= comment.text %></p>
-            </div>
-        <% }) %>
-    <% } else { %>
-        <p>No comments yet.</p>
-    <% } %>
+        <% foundInfo.comments.forEach(function(item) { %>
+
+        <div>
+            <p>(<%= item.commentType %>):</p>
+            <p><%= item.text %></p>
+            <% }) %>
+            <% } else { %>
+            <p>No comments yet.</p>
+            <% } %>
+        </div>
 </section>
 
 <hr>
-    <a href="/info/<%= foundInfo._id%>/editInfo"> Edit card</a>
+   
     <a href="/info/index"> all Cards</a>
     
 </body>

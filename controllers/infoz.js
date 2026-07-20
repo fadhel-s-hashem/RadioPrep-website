@@ -1,5 +1,5 @@
 const Info = require('../models/info')
-const Comment = require('../models/comment')
+// const Comment = require('../models/comment')
 
 const showNewForm = async (req, res) => {
     res.render("info/newInfo.ejs")
@@ -16,6 +16,7 @@ const create = async (req,res) => {
     infoData.generalInfo = req.body.generalInfo
     infoData.image = req.body.image
     infoData.notice = req.body.notice
+    infoData.owner = req.session.user._id
 
     let createInfo = await Info.create(infoData)
     res.redirect('/info/index')
@@ -30,9 +31,9 @@ const index = async (req, res) => {
 }
 
 const showInfo = async (req, res) => {
-    let foundInfo = await Info.findById(req.params.infoId)
+    let foundInfo = await Info.findById(req.params.infoId).populate('owner').populate("comments.author")
 
-    const comments = await Info.find({ info: req.params.infoId }).populate('owner').populate("comments.author")
+    // const comments = await Info.find({ info: req.params.infoId })
     // foundInfo.push( req.body.notice)
     // await foundInfo.save()
 

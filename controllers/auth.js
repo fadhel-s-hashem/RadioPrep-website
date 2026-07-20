@@ -74,7 +74,7 @@ const signIn = async (req, res) => {
         return res.send("User does not exist");
     }
 
-    const validPassword = await bcrypt.compare(
+    const validPassword = await bcrypt.compareSync(
         req.body.password,
         CPRInDatabase.password
     );

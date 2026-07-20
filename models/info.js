@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { array } = require("../config/multer");
+// const { array } = require("../config/multer");
 
 const commentSchema = new mongoose.Schema({
     text: {
