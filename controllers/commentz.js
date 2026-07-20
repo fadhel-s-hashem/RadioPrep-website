@@ -7,6 +7,8 @@ const commentData = {}
     commentData.text = req.body.text
     commentData.commentType = req.body.commentType
     commentData.author = req.session.user._id
+    commentData.info = req.params.infoId
+    commentData.info= req.params.infoId
 
     console.log(req.session.user._id)
 

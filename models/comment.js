@@ -15,9 +15,17 @@ const commentSchema = new mongoose.Schema({
      author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
+        // required: true,
+    },
+
+    info: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Info",
         required: true,
     },
 
 }, { timestamps: true })
 
 const Comment = mongoose.model("Comment", commentSchema)
+
+module.exports = Comment;

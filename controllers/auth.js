@@ -82,7 +82,7 @@ const signIn = async (req, res) => {
 
     req.session.user = {
         CPR: CPRInDatabase.CPR,
-        id: CPRInDatabase.id,
+        _id: CPRInDatabase._id,
     };
 
     req.session.save(() => {

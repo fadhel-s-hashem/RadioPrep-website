@@ -1,4 +1,5 @@
 const Info = require('../models/info')
+const Comment = require('../models/comment')
 
 const showNewForm = async (req, res) => {
     res.render("info/newInfo.ejs")
@@ -30,6 +31,8 @@ const index = async (req, res) => {
 
 const showInfo = async (req, res) => {
     let foundInfo = await Info.findById(req.params.infoId)
+
+    const comments = await Comment.find({ info: req.params.infoId }).populate('author');
     // foundInfo.push( req.body.notice)
     // await foundInfo.save()
 
@@ -74,10 +77,3 @@ module.exports = {
     editInfo,
     updatedInfo,
 }
-
-//   <% foundInfo.forEach((item) => { %>
-//             if (item.notice !== ''){
-                
-//                 <p><%= item.notice%> </p>
-//             }
-//        <% }) %> 

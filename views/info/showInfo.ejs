@@ -6,6 +6,9 @@
     <title>Document</title>
 </head>
 <body>
+     <% if (user) { %>
+        <p>Welcome, <%= user.username %>.</p>
+    <% } %>
     
     <form action="/info/<%= foundInfo._id%>?_method=DELETE" method="post">
         <img src="/images/<%= foundInfo.radiologyUnit%>.png" alt="<%= foundInfo.radiologyUnit%> image" width="200">
@@ -40,12 +43,9 @@
                 <option value="complaint"> complaint</option>
                 <option value="urgent"> urgent matter </option>
 
-                <label for="text"> write a comeent</label>
-                <textarea name="text" rows="4" required></textarea>
-
-
             </select>
 
+            <label for="text"> write a comeent</label>
             <textarea name="text" rows="4" required></textarea>
             <button type="submit"> Add comment</button>
 

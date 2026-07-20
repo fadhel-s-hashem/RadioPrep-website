@@ -35,6 +35,13 @@ const infoSchema = new mongoose.Schema({
         required: true,
     },
 
+    //  owner: {
+    //     // to specfie it blong to the User
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "User",
+    //     required: true,
+    // },
+
 }, { timestamps: true })
 
 const Info = mongoose.model("Info", infoSchema)
