@@ -22,9 +22,10 @@ const path = require("path");
 // for upload image if needed
 const upload = require("./config/multer");
 
-//to import the controller
+//to import the controller////////////////////////
 const authCtrl = require("./controllers/auth.js");
 const infoCtrl = require("./controllers/infoz.js");
+const commentCtrl = require("./controllers/commentz.js");
 
 
 
@@ -79,6 +80,9 @@ app.get('/info/:infoId' , infoCtrl.showInfo)
 app.delete('/info/:infoId' , infoCtrl.deleteInfo)
 app.get('/info/:infoId/editInfo', infoCtrl.editInfo)
 app.put('/info/:infoId' , infoCtrl.updatedInfo)
+
+//Route==commentCtrl==================================
+app.post('/info/:infoId/comment'  , commentCtrl.createComment)
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
