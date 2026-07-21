@@ -61,15 +61,18 @@
 
     <% if (foundInfo.comments.length > 0) { %>
         <% foundInfo.comments.forEach(function(item) { %>
-
-        <div>
+        <form action="/info/<%= foundInfo._id%>/deleteComent?_method=DELETE">
             <p>(<%= item.commentType %>):</p>
             <p><%= item.text %></p>
+            <button type="submit">Delete comment</button>
+        </form>
             <% }) %>
-            <% } else { %>
+            
+
+             <% } else { %>
             <p>No comments yet.</p>
             <% } %>
-        </div>
+       
 </section>
 
 <hr>

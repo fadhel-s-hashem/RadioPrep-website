@@ -15,11 +15,19 @@ const commentData = {}
 
     res.redirect(`/info/${req.params.infoId}`)
     // let createdComment = await Comment.create(commentData)
-    // res.send(' comment test work')
+    
+}
 
+const deleteComment = async (req,res) => {
+    const foundInfo = await Info.findById(req.params.infoId)
+
+    foundInfo.comments.pull(commentData)
+    await foundInfo.save()
+    res.send(' comment test work')
 }
 
 
 module.exports = {
     createComment,
+    deleteComment,
 }
