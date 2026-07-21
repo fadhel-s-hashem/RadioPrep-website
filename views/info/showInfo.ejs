@@ -62,7 +62,7 @@
     <% if (foundInfo.comments.length > 0) { %>
         <% foundInfo.comments.forEach(function(item) { %>
             <hr>
-            <p><%= foundInfo.owner.username %> add coment:</p>
+            <p><%= item.author.username %> added comment:</p>
             <p>(<%= item.commentType %>):</p>
             <p><%= item.text %></p>
 
