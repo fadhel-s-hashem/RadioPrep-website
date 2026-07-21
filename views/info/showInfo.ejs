@@ -61,14 +61,18 @@
 
     <% if (foundInfo.comments.length > 0) { %>
         <% foundInfo.comments.forEach(function(item) { %>
-        <form action="/info/<%= foundInfo._id%>/comment/<%= item._id%>?_method=DELETE" method="POST">
+            <hr>
+            <p><%= foundInfo.owner.username %> add coment:</p>
             <p>(<%= item.commentType %>):</p>
             <p><%= item.text %></p>
+
+            <% if (user.CPR === item.author.CPR){ %>
+             <form action="/info/<%= foundInfo._id%>/comment/<%= item._id%>?_method=DELETE" method="POST">
             <button type="submit">Delete comment</button>
         </form>
-            <% }) %>
-            
-
+        
+        <% } %> 
+           <% }) %>
              <% } else { %>
             <p>No comments yet.</p>
             <% } %>

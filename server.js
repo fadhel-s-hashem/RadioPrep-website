@@ -76,7 +76,7 @@ app.delete("/auth/sign-out", authCtrl.signOut);
 app.get('/info/newInfo', infoCtrl.showNewForm)
 app.post('/info', infoCtrl.create)
 app.get('/info/index', infoCtrl.index)
-app.get('/info/:infoId' , infoCtrl.showInfo)
+app.get('/info/:infoId' , isSignedIn, infoCtrl.showInfo)
 app.delete('/info/:infoId' , infoCtrl.deleteInfo)
 app.get('/info/:infoId/editInfo', infoCtrl.editInfo)
 app.put('/info/:infoId' , infoCtrl.updatedInfo)
