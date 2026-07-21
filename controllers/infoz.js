@@ -39,6 +39,7 @@ const showInfo = async (req, res) => {
 
     res.render('info/ShowInfo.ejs', {
         foundInfo: foundInfo
+        
     })
 }
 
