@@ -98,24 +98,43 @@
   <% if (user && user.staff) { %>
   <div class="d-flex align-items-center gap-2 my-3">
     
-    <!-- Delete Form & Button -->
-    <form action="/info/<%= foundInfo._id %>?_method=DELETE" method="post" class="m-0">
-      <button type="submit" class="btn btn-danger w-auto px-3">
-        Delete info card
-      </button>
-    </form>
+    <!-- Delete_Button -->
+    
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Delete this Card
+</button>
 
-    <!-- Modal Edit Button -->
-    <button type="button" class="btn btn-warning" w-auto px-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      Edit this card
+    <!-- Modal_Edit Button -->
+    <button type="button" class="btn btn-warning w-auto px-3"data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Edit this card  
     </button>
 
   </div>
 <% } %>
 </div>
-    
 
-<!-- Modal -->
+<!-- modal Delete ===========================-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"> Delete Card</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       Are you shoure you want to delete this card
+      </div>
+      <div class="modal-footer">
+        <form action="/info/<%= foundInfo._id %>?_method=DELETE" method="post" >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="submit" class="btn btn-danger w-auto px-3">Yes, Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!-- Modal edit==============================-->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -123,65 +142,78 @@
         <h1 class="modal-title fs-5" id="staticBackdropLabel"> Edit : <%= foundInfo.name%></h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-         <form action="/info/<%= foundInfo._id%>?_method=PUT" method="post">
 
-    <label for="name"> Examination name</label>
-    <input 
-    type="text" 
-    name="name" 
-    id="name"
-    value="<%= foundInfo.name%>"
-    required>
+      <form action="/info/<%= foundInfo._id%>?_method=PUT" method="post">
+        <div class="modal-body">
 
-<br>
-    <label for="duration"> expected duration</label>
-    <input 
-    type="number"
-     name="duration"
-      id="duration"
-      value="<%= foundInfo.duration%>"
-      required>
-<br>
+          <!-- Examination Name -->
+          <div class="mb-3">
+            <label for="name" class="form-label">Examination Name</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              name="name" 
+              id="name"
+              value="<%= foundInfo.name%>"
+              required>
+          </div>
 
-    <label for="radiologyUnit">Select Radiology Unit:   </label>
-    <select name="radiologyUnit" id="radiologyUnit" required>
-    
-    <option value="<%= foundInfo.radiologyUnit%>"><%= foundInfo.radiologyUnit%></option>    
-    <option value="general-xray">general-xray</option>
-    <option value="CT">CT</option>
-    <option value="MRI">MRI</option>
-    <option value="US">Ultrasound (US)</option>
-    <option value="fluor">Fluoroscopy (fluor)</option>
-    <option value="BMD">Bone Mineral Density (BMD)</option>
+          <!-- Expected Duration -->
+          <div class="mb-3">
+            <label for="duration" class="form-label">Expected Duration (mins)</label>
+            <input 
+              type="number" 
+              class="form-control" 
+              name="duration" 
+              id="duration"
+              value="<%= foundInfo.duration%>"
+              required>
+          </div>
 
-    </select>
-<br>
+          <!-- Radiology Unit -->
+          <div class="mb-3">
+            <label for="radiologyUnit" class="form-label">Select Radiology Unit</label>
+            <select class="form-select" name="radiologyUnit" id="radiologyUnit" required>
+              <option value="<%= foundInfo.radiologyUnit%>" selected><%= foundInfo.radiologyUnit%></option>    
+              <option value="general-xray">general-xray</option>
+              <option value="CT">CT</option>
+              <option value="MRI">MRI</option>
+              <option value="US">Ultrasound (US)</option>
+              <option value="fluor">Fluoroscopy (fluor)</option>
+              <option value="BMD">Bone Mineral Density (BMD)</option>
+            </select>
+          </div>
 
-<label for="notice"> important notice</label>
-    <input type="text" name="notice" id="notice" value="<%= foundInfo.notice[0]%>">
-    <input type="text" name="notice" id="notice"  value="<%= foundInfo.notice[1]%>">
-    <input type="text" name="notice" id="notice"  value="<%= foundInfo.notice[2]%>">
-    <input type="text" name="notice" id="notice"  value="<%= foundInfo.notice[3]%>">
+          <!-- Important Notices -->
+          <div class="mb-3">
+            <label class="form-label">Important Notices</label>
+            <input type="text" class="form-control mb-2" name="notice" value="<%= foundInfo.notice[0]%>" placeholder="Notice 1">
+            <input type="text" class="form-control mb-2" name="notice" value="<%= foundInfo.notice[1]%>" placeholder="Notice 2">
+            <input type="text" class="form-control mb-2" name="notice" value="<%= foundInfo.notice[2]%>" placeholder="Notice 3">
+            <input type="text" class="form-control" name="notice" value="<%= foundInfo.notice[3]%>" placeholder="Notice 4">
+          </div>
 
-<br>
-    <label for="generalInfo">Add General Info:</label>
-    <textarea 
-    name="generalInfo"
-    id="generalInfo" 
-    
-    required>
-<%= foundInfo.generalInfo %>
-    </textarea>
-<br>
+          <!-- General Info -->
+          <div class="mb-3">
+            <label for="generalInfo" class="form-label">Add General Info</label>
+            <textarea 
+              class="form-control" 
+              name="generalInfo" 
+              id="generalInfo" 
+              rows="4" 
+              required><%= foundInfo.generalInfo %></textarea>
+          </div>
 
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-primary">save changes</button>
-</div>
-</form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
     </div>
+
+    
   </div>
 </div>
 
