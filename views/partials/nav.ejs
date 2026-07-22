@@ -11,8 +11,18 @@
 <body>
     <nav class="site-nav">
        <% if (user) { %>
-          <p class=" mb-1">Welcome, <%= user.username %></p>
-        <% } %>
+       <span class="fw-bold text-dark d-flex align-items-center gap-2">
+
+            <!-- Icon before the username -->
+            <% if (user.staff) { %>
+                <img src="/images/staff.svg" alt="Staff"   class="chatImage" >
+                
+            <% } else { %>
+                <img src="/images/noStaff.svg" alt="User"  title="User" class="chatImage">
+            <% } %>
+           <p class=" mb-1">Welcome, <%= user.username %></p>
+        </span>
+         <% } %>
 
         <div class="site-nav-links">
             <a class="site-nav-link" href="/">Home</a>
