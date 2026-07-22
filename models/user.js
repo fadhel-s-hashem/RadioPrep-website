@@ -24,7 +24,12 @@ const userSchema = new mongoose.Schema({
     staff: {
         type:Boolean,
         required: true,
-    },
+    }, 
+
+    passkey: {
+        type: String,
+
+    }
 })
 
 const User = mongoose.model("User", userSchema)

@@ -31,12 +31,15 @@ const signUp = async (req, res) => {
     return res.send("CPR should be only numbers");
 }
 
+// is staff boolean
     if (req.body.staff === 'on') {
         req.body.staff = true
     } else {
         req.body.staff = false
     }
 
+    // const isStaff = req.body.staff === true
+    
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     req.body.password = hashedPassword
     // const userData = {
@@ -52,10 +55,12 @@ const signUp = async (req, res) => {
         username: user.username,
         CPR: user.CPR,
         _id: user._id,
+        staff: user.staff,
+
     };
 
     req.session.save(() => {
-        res.redirect("/");
+        res.redirect("/") 
     });
 };
 
@@ -88,6 +93,7 @@ const signIn = async (req, res) => {
         username: CPRInDatabase.username,
         CPR: CPRInDatabase.CPR,
         _id: CPRInDatabase._id,
+         staff: CPRInDatabase.staff,
     };
 
     req.session.save(() => {

@@ -10,26 +10,29 @@
      <% if (user) { %>
         <p>Welcome, <%= user.username %>.</p>
     <% } %>
+    <img src="/images/<%= foundInfo.radiologyUnit%>.png" alt="<%= foundInfo.radiologyUnit%> image" width="200">
+    <h1> <%= foundInfo.name%> </h1>
+    <p><%= foundInfo.radiologyUnit%> </p>
+    <p><%= foundInfo.duration%> </p>
+    <p><%= foundInfo.generalInfo%> </p>
     
+    <% foundInfo.notice.forEach(function(item) { %>
+      <%if (item !== '') { %>
+         <ul>
+    <li><%= item %></li>
+    </ul>
+       <% }%>
+    <% }) %>
+         <% if (user && user.staff) { %>
+
     <form action="/info/<%= foundInfo._id%>?_method=DELETE" method="post">
-        <img src="/images/<%= foundInfo.radiologyUnit%>.png" alt="<%= foundInfo.radiologyUnit%> image" width="200">
-        <h1> <%= foundInfo.name%> </h1>
-        <p><%= foundInfo.radiologyUnit%> </p>
-        <p><%= foundInfo.duration%> </p>
-        <p><%= foundInfo.generalInfo%> </p>
-        
-        <% foundInfo.notice.forEach(function(item) { %>
-          <%if (item !== '') { %>
-             <ul>
-        <li><%= item %></li>
-        </ul>
-           <% }%>
-        <% }) %>
 
         <br>
          <button> <a href="/info/<%= foundInfo._id%>/editInfo"> Edit card</a></button>
         <button type="submit"> Delete info card</button>
     </form>
+    <% } %>
+
 
     <hr>
     <section>
@@ -77,11 +80,11 @@
             <p>No comments yet.</p>
             <% } %>
        
-</section>
-
-<hr>
-   
-    <a href="/info/index"> all Cards</a>
+        </section>
+        
+        <hr>
+        
+        <a href="/info/index"> all Cards</a>
     
 </body>
 </html>
