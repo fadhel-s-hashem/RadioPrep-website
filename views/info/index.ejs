@@ -23,7 +23,7 @@
                             src="/images/<%= item.radiologyUnit %>.png" 
                             class="card-img-top img-fluid" 
                             alt="<%= item.radiologyUnit %> image"
-                            style="max-height: 140px; object-fit: contain;"
+                            style="max-height: 40dvh;"  
                         >
                     </div>
 
@@ -45,8 +45,20 @@
                             </span>
                         </div>
 
-                        
+                        <div class="mt-3 p-3 rounded-3" style="background-color: #f0bdbd; ">
 
+            <h6 class="fw-bold text-danger mb-2 fs-6">
+              ⚠️ Important Notices:
+            </h6>
+            <ul class="mb-0 ps-3">
+              <% item.notice.forEach(function(note) { %>
+                <% if (note !== '') { %>
+                  <li class="text-dark small mb-1"><%= note %></li>
+                <% } %>
+              <% }) %>
+            </ul>
+          </div>
+          <br>
                         <!-- Action Link Button -->
                         <div class="mt-auto">
                             <a href="/info/<%= item._id %>" class="btn btn-primary w-100 fw-semibold">
@@ -63,7 +75,7 @@
 
 
  <% if (user && user.staff) { %>
-    <a href="/info/newInfo">Creat new card</a>
+    <a href="/info/newInfo" class="btn btn-primary">Creat new card</a>
      <% } %>
 </body>
 </html>
