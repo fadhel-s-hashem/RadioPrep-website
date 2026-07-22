@@ -27,10 +27,11 @@ A web-based educational and reference platform built for diagnostic radiologic t
 To run the project locally on your machine:
 
 1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/fadhel-s-hashem/RadioPrep.git](https://github.com/your-username/RadioPrep.git)
+````bash
+   git clone [[https://github.com/fadhel-s-hashem/RadioPrep.git](https://github.com/fadhel-s-hashem/RadioPrep-website)]
    cd RadioPrep
-
+````
+---
    ##  Technologies Used
 
 * **HTML & EJS** – Dynamic server-side templating and views
