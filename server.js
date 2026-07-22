@@ -78,7 +78,7 @@ app.post('/info', infoCtrl.create)
 app.get('/info/index', infoCtrl.index)
 app.get('/info/:infoId' , isSignedIn, infoCtrl.showInfo)
 app.delete('/info/:infoId' , infoCtrl.deleteInfo)
-app.get('/info/:infoId/editInfo', infoCtrl.editInfo)
+// app.get('/info/:infoId/editInfo', infoCtrl.editInfo)
 app.put('/info/:infoId' , infoCtrl.updatedInfo)
 
 //Route==commentCtrl==================================

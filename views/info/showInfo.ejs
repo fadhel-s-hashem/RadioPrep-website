@@ -3,88 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Document</title>
 </head>
 <%- include("../partials/nav.ejs") %>
 <body>
-     <% if (user) { %>
-        <p>Welcome, <%= user.username %>.</p>
-    <% } %>
-    <img src="/images/<%= foundInfo.radiologyUnit%>.png" alt="<%= foundInfo.radiologyUnit%> image" width="200">
-    <h1> <%= foundInfo.name%> </h1>
-    <p><%= foundInfo.radiologyUnit%> </p>
-    <p><%= foundInfo.duration%> </p>
-    <p><%= foundInfo.generalInfo%> </p>
+ <% if (user) { %>
+          <p class="text-muted small mb-1">Welcome, <strong><%= user.username %></p>
+        <% } %>
+
+ <div class="card mb-4 border-0 shadow-lg p-3 p-md-4" style="max-width: 1050px; margin: 0 auto; background-color: #ffffff;">
+  <div class="row g-4 align-items-center flex-row">
     
-    <% foundInfo.notice.forEach(function(item) { %>
-      <%if (item !== '') { %>
-         <ul>
-    <li><%= item %></li>
-    </ul>
-       <% }%>
-    <% }) %>
-         <% if (user && user.staff) { %>
+    <!-- LEFT SIDE: Radiology Image Column -->
+    <div class="col-12 col-md-4 text-center text-md-start p-2">
+      <div class="p-3 rounded-3 text-center" style="background-color: #F8FAFC; border: 1px solid #E2E8F0;">
+        <img 
+          src="/images/<%= foundInfo.radiologyUnit %>.png" 
+          class="img-fluid rounded" 
+          alt="<%= foundInfo.radiologyUnit %> image"
+          style="max-height: 260px; width: 100%; object-fit: contain;"
+        >
 
-    <form action="/info/<%= foundInfo._id%>?_method=DELETE" method="post">
+        </span>
+      </div>
+    </div>
 
-        <br>
-         <button> <a href="/info/<%= foundInfo._id%>/editInfo"> Edit card</a></button>
-        <button type="submit"> Delete info card</button>
+    <!-- RIGHT SIDE: Detailed Content Column -->
+    <div class="col-12 col-md-8">
+      <div class="card-body text-start p-1 p-md-2">
+
+        <!-- Title ============= -->
+        <h1 class="card-title text-start mb-3 display-6 fw-bold" style="color: #0284C7;">
+          <%= foundInfo.name %>
+        </h1>
+        
+        <!-- ========================================= -->
+        <div class="row g-2 mb-3">
+          <!-- Radiology Unit Type -->
+          <div class="col-sm-6">
+            <div class="p-2 rounded" style="background-color: #F0F9FF; border: 1px solid #BAE6FD;">
+              <small class="text-uppercase fw-bold d-block" style="color: #0284C7; font-size: 0.75rem;">
+                Radiology Unit Type
+              </small>
+              <span class="fw-bold text-dark fs-6">
+                🖥️ <%= foundInfo.radiologyUnit %>
+              </span>
+            </div>
+          </div>
+
+          <!-- Expected Duration ============= -->
+          <div class="col-sm-6">
+            <div class="p-2 rounded" style="background-color: #F0FDF4; border: 1px solid #BBF7D0;">
+              <small class="text-uppercase fw-bold d-block text-success" style="font-size: 0.75rem;">
+                Expected Duration
+              </small>
+              <span class="fw-bold text-dark fs-6">
+                ⏱️ <%= foundInfo.duration %> Minutes
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- General Info========== -->
+        <div class="mb-3">
+          <h6 class="fw-bold text-uppercase mb-1" style="color: #475569; font-size: 0.8rem; letter-spacing: 0.05em;">
+            General Overview & Instructions
+          </h6>
+          <p class="card-text text-secondary fs-6 mb-0" style="line-height: 1.6;">
+            <%= foundInfo.generalInfo %>
+          </p>
+        </div>
+
+        <!-- Important Notices Section -->
+        <% if (foundInfo.notice && foundInfo.notice.some(item => item !== '')) { %>
+          <div class="mt-3 p-3 rounded-3" style="background-color: #FEF2F2; border-left: 4px solid #DC2626;">
+            <h6 class="fw-bold text-danger mb-2 fs-6">
+              ⚠️ Important Preparation Notices:
+            </h6>
+            <ul class="mb-0 ps-3">
+              <% foundInfo.notice.forEach(function(item) { %>
+                <% if (item !== '') { %>
+                  <li class="text-dark small mb-1"><%= item %></li>
+                <% } %>
+              <% }) %>
+            </ul>
+          </div>
+        <% } %>
+
+      </div>
+    </div>
+
+  </div>
+
+  <% if (user && user.staff) { %>
+  <div class="d-flex align-items-center gap-2 my-3">
+    
+    <!-- Delete Form & Red Button -->
+    <form action="/info/<%= foundInfo._id %>?_method=DELETE" method="post" class="m-0" onsubmit="return confirm('Are you sure you want to delete this card?');">
+      <button type="submit" class="btn btn-danger w-auto px-3">
+        Delete info card
+      </button>
     </form>
-    <% } %>
 
+    <!-- Modal Trigger Edit Button -->
+    <button type="button" class="btn btn-primary w-auto px-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Edit this card
+    </button>
 
-    <hr>
-    <section>
-        <h2>Commets about this Examination</h2>
+  </div>
+<% } %>
+</div>
+    
 
-        <form action="/info/<%= foundInfo._id%>/comment" method="post">
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel"> Edit : <%= foundInfo.name%></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <form action="/info/<%= foundInfo._id%>?_method=PUT" method="post">
 
-            <label for="commentType"> your comment is </label>
-            <select name="commentType" id="commentType">
-                <option value="question"> question</option>
-                <option value="suggestion">suggestion </option>
-                <option value="complaint"> complaint</option>
-                <option value="urgent"> urgent matter </option>
+    <label for="name"> Examination name</label>
+    <input 
+    type="text" 
+    name="name" 
+    id="name"
+    value="<%= foundInfo.name%>"
+    required>
 
-            </select>
+<br>
+    <label for="duration"> expected duration</label>
+    <input 
+    type="number"
+     name="duration"
+      id="duration"
+      value="<%= foundInfo.duration%>"
+      required>
+<br>
 
-            <label for="text"> write a comeent</label>
-            <textarea name="text" rows="4" required></textarea>
-            <button type="submit"> Add comment</button>
+    <label for="radiologyUnit">Select Radiology Unit:   </label>
+    <select name="radiologyUnit" id="radiologyUnit" required>
+    
+    <option value="<%= foundInfo.radiologyUnit%>"><%= foundInfo.radiologyUnit%></option>    
+    <option value="general-xray">general-xray</option>
+    <option value="CT">CT</option>
+    <option value="MRI">MRI</option>
+    <option value="US">Ultrasound (US)</option>
+    <option value="fluor">Fluoroscopy (fluor)</option>
+    <option value="BMD">Bone Mineral Density (BMD)</option>
 
-        </form>
+    </select>
+<br>
 
+<label for="notice"> important notice</label>
+    <input type="text" name="notice" id="notice" value="<%= foundInfo.notice[0]%>">
+    <input type="text" name="notice" id="notice"  value="<%= foundInfo.notice[1]%>">
+    <input type="text" name="notice" id="notice"  value="<%= foundInfo.notice[2]%>">
+    <input type="text" name="notice" id="notice"  value="<%= foundInfo.notice[3]%>">
 
-    </section>
-    <hr>
+<br>
+    <label for="generalInfo">Add General Info:</label>
+    <textarea 
+    name="generalInfo"
+    id="generalInfo" 
+    
+    required>
+<%= foundInfo.generalInfo %>
+    </textarea>
+<br>
 
-  <section>
-    <h2>Comments</h2>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">save changes</button>
+</div>
+</form>
+    </div>
+  </div>
+</div>
 
-    <% if (foundInfo.comments.length > 0) { %>
-        <% foundInfo.comments.forEach(function(item) { %>
-            <hr>
-            <p><%= item.author.username %> added comment:</p>
-            <p>(<%= item.commentType %>):</p>
-            <p><%= item.text %></p>
+   <!--comments ====================================================================  -->
 
-            <% if (user.CPR === item.author.CPR){ %>
-             <form action="/info/<%= foundInfo._id%>/comment/<%= item._id%>?_method=DELETE" method="POST">
-            <button type="submit">Delete comment</button>
-        </form>
-        
-        <% } %> 
-           <% }) %>
-             <% } else { %>
-            <p>No comments yet.</p>
+  <section class="comments-display-section my-4">
+    <h2 class="h4 fw-bold mb-3" style="color: #0284C7;">
+        Discussion & Feedback (<%= foundInfo.comments.length %>)
+    </h2>
+
+    <% if (foundInfo.comments && foundInfo.comments.length > 0) { %>
+        <div class="d-flex flex-column gap-3">
+            <% foundInfo.comments.forEach(function(item) { %>
+                
+                <!-- Individual Comment Card -->
+                <div class="card border-0 shadow-sm rounded-3 bg-white">
+                    <div class="card-body p-3">
+                        
+                        <!-- Header: Author + Badge + Date (if applicable) -->
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="fw-bold text-dark d-flex align-items-center gap-2">
+            <!-- Inline SVG Icon before the username -->
+            <% if (item.author.staff) { %>
+                <img src="/images/staff.svg" alt="Staff" style="width: 20px; height: 20px; vertical-align: middle;" title="Medical Staff">
+            <% } else { %>
+                <img src="/images/noStaff.svg" alt="User" style="width: 20px; height: 20px; vertical-align: middle;" title="User">
             <% } %>
-       
-        </section>
+            
+            <%= item.author.username %>
+        </span>
+                                
+                                <!-- Dynamic Badges based on comment type -->
+                                <% if (item.commentType === 'urgent') { %>
+                                    <span class="badge bg-danger">🚨 Urgent</span>
+                                <% } else if (item.commentType === 'complaint') { %>
+                                    <span class="badge bg-warning text-dark">⚠️ Complaint</span>
+                                <% } else if (item.commentType === 'suggestion') { %>
+                                    <span class="badge bg-success">💡 Suggestion</span>
+                                <% } else { %>
+                                    <span class="badge bg-info text-dark">❓ Question</span>
+                                <% } %>
+                            </div>
+
+                            <!-- Delete button for Comment Author -->
+                            <% if (user && user.CPR === item.author.CPR) { %>
+                                <form action="/info/<%= foundInfo._id %>/comment/<%= item._id %>?_method=DELETE" method="POST" class="m-0" onsubmit="return confirm('Delete this comment?');">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm py-1 px-2 w-auto">
+                                         Delete
+                                    </button>
+                                </form>
+                            <% } %>
+                        </div>
+
+                        <!-- Comment Body -->
+                        <p class="card-text text-secondary mb-0 fs-6" style="line-height: 1.5;">
+                            <%= item.text %>
+                        </p>
+
+                    </div>
+                </div>
+
+            <% }) %>
+        </div>
+    <% } else { %>
+        <!-- Empty State Card -->
+        <div class="card border-0 shadow-sm p-4 text-center bg-light">
+            <p class="text-muted mb-0">No comments. Be the first to start the discussion!</p>
+        </div>
+    <% } %>
+</section>
         
+<!-- add comments ===================================================================== -->
         <hr>
+
+        <section class="comment-section p-4 my-4 rounded-3 shadow-sm bg-white border">
+    <h2 class="h4 fw-bold mb-3" style="color: #0284C7;">
+         Any Comments About This Examination? 💬
+    </h2>
+
+    <form action="/info/<%= foundInfo._id %>/comment" method="post">
         
-        <a href="/info/index"> all Cards</a>
+        <!-- Comment Type Dropdown -->
+        <div class="mb-3">
+            <label for="commentType" class="form-label fw-semibold text-secondary">
+                Select Comment Type
+            </label>
+            <select name="commentType" id="commentType" class="form-select border-slate">
+                <option value="question">❓ Question</option>
+                <option value="suggestion">💡 Suggestion</option>
+                <option value="complaint">⚠️ Complaint</option>
+                <option value="urgent">🚨 Urgent Matter</option>
+            </select>
+        </div>
+
+        <!-- Comment Textarea -->
+        <div class="mb-3">
+            <label for="text" class="form-label fw-semibold text-secondary">
+                Write a Comment
+            </label>
+            <textarea 
+                name="text" 
+                id="text" 
+                class="form-control border-slate" 
+                rows="4" 
+                placeholder="Share your feedback, question, or inquiry..." 
+                required
+            ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary w-auto px-4 py-2 fw-semibold">
+            Add Comment
+        </button>
+
+    </form>
+</section>
+    <br>
+        
+        <a href="/info/index" class="btn btn-primary"> all Cards</a>
     
 </body>
 </html>
