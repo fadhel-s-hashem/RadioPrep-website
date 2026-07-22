@@ -38,15 +38,35 @@
   <hr>
   
   <br>
-
-<div>
-  <a href="/info/index" class="btn btn-primary"> to see all Cards</a>
-   <% if (user && user.staff) { %>
-    <a href="/info/newInfo" class="btn btn-primary">Creat new card</a>
-     <% } %>
-      <% if (user && user.staff) { %>
-    <a href="/info/newInfo" class="btn btn-primary">Creat new card</a>
-     <% } %>
+<!-- website function Summary ====================================-->
+<div class="row g-4 py-2 text-start">
+    
+    <!-- Patient Card -->
+    <div class="col-md-6">
+        <div class="card h-100 border-0 shadow-sm p-3 rounded-3 bg-light">
+            <div class="card-body">
+                <div class="fs-2 mb-2 text-primary">💬</div>
+                <h5 class="fw-bold text-dark">Patient Access & Feedback</h5>
+                <p class="text-secondary small mb-0">
+                    Patients can easily view exam preparation cards and leave comments or questions to ensure they are fully prepared.
+                </p>
+            </div>
+        </div>
     </div>
+
+    <!-- Staff Card -->
+    <div class="col-md-6">
+        <div class="card h-100 border-0 shadow-sm p-3 rounded-3 bg-light">
+            <div class="card-body">
+                <div class="fs-2 mb-2 text-primary">⚙️</div>
+                <h5 class="fw-bold text-dark">Staff Management</h5>
+                <p class="text-secondary small mb-0">
+                    Staff can create, update, or delete exam details in real time so everyday radiology workflows run smoothly.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>
