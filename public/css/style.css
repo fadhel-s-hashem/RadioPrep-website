@@ -273,3 +273,10 @@ display: none;
 .homeCard-title{
     text-align: center;
 }
+
+.showCard{
+    max-width: 1050px;
+    margin: 5dvh auto;
+    /* margin: 0 auto; */
+    background-color: #ffffff;
+}

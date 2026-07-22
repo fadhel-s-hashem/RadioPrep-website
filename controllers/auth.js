@@ -42,10 +42,7 @@ const signUp = async (req, res) => {
     
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     req.body.password = hashedPassword
-    // const userData = {
-    //     username: req.body.username,
-    //     password: hashedPassword,
-    // };
+   
 
     // Save user to DB
     const user = await User.create(req.body);
