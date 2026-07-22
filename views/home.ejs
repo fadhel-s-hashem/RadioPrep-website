@@ -1,19 +1,52 @@
 ﻿<%- include("./partials/nav.ejs") %>
 
-<main>
-    <h1>RadioPrep</h1>
-    <h2></h2>
 
-    <% if (user) { %>
-        <p>Welcome, <%= user.username %>.</p>
+
+<main class="page-container">
+
+    <!-- Hero Section -->
+    <section>
+        <% if (user) { %>
+        <h1>Welcome <%= user.username %>, to RadioPrep.</h1>
+        <p>Your comprehensive medical radiology reference and prep tool.</p>
+        <br>
         <form action="auth/sign-out?_method=DELETE" method="post">
-      <button type="submit"> sign out <output></output></button>
+      <button type="submit" class="btn btn-primary outHome"> sign out <output></output></button>
       </form>
     <% } else { %>
-        <p>Please Sign-in or Sign-up if you dont have an acount</p>
+        <h1>Welcome to RadioPrep</h1>
+        <p>Your comprehensive medical radiology reference and prep tool.</p>
+       
     <% } %>
-</main>
+    </section>
 
-<a href="/info/index"> to see all Cards</a>
+    <!-- Horizontal Card Section -->
+    <article class="card">
+      <div class="card-media">
+        <img src="/images/RadioPrep.png" alt="RadioPrep" width="200dvh" class="imgHome">
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">Diagnostic Radiology Overview</h2>
+        <p class="card-text">
+          Explore key imaging protocols, anatomy positioning guides, and quick reference material designed to assist technologist prep and study workflows.
+        </p>
+      </div>
+    </article>
+
+  </main>
+
+  <hr>
+  
+  <br>
+
+<div>
+  <a href="/info/index" class="btn btn-primary"> to see all Cards</a>
+   <% if (user && user.staff) { %>
+    <a href="/info/newInfo" class="btn btn-primary">Creat new card</a>
+     <% } %>
+      <% if (user && user.staff) { %>
+    <a href="/info/newInfo" class="btn btn-primary">Creat new card</a>
+     <% } %>
+    </div>
 </body>
 </html>

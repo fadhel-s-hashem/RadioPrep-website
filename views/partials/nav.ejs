@@ -10,13 +10,15 @@
 </head>
 <body>
     <nav class="site-nav">
-        <a class="site-nav-brand" href="/">RadioPrep</a>
+       <% if (user) { %>
+          <p class=" mb-1">Welcome, <%= user.username %></p>
+        <% } %>
 
         <div class="site-nav-links">
             <a class="site-nav-link" href="/">Home</a>
 
             <% if (user) { %>
-                <a class="site-nav-link" href="/dashboard">Dashboard</a>
+                <a class="site-nav-link" href="/info/index"> all Cards</a>
 
                 <form
                     class="site-nav-form"

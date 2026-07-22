@@ -26,10 +26,9 @@ const userSchema = new mongoose.Schema({
         required: true,
     }, 
 
-    passkey: {
-        type: String,
-
-    }
+    // passkey: {
+    //     type: String,
+    // }
 })
 
 const User = mongoose.model("User", userSchema)

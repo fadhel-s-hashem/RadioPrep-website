@@ -70,7 +70,6 @@ app.get("/auth/sign-in", authCtrl.showSignInForm);
 app.post("/auth/sign-in", authCtrl.signIn);
 app.delete("/auth/sign-out", authCtrl.signOut);
 
-// app.get("/dashboard", isSignedIn, authCtrl.dashboard);
 
 //Route==infoCtrl=========================================
 app.get('/info/newInfo', infoCtrl.showNewForm)
