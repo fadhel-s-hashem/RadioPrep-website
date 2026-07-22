@@ -8,54 +8,103 @@
 <%- include("../partials/nav.ejs") %>
 <body>
 
-    <form action="/info" method="post">
+    <div class="container my-5 newInfo" >
+  <div class="card shadow-sm border-0 rounded-3">
+    
+    <!-- Card Header -->
+    <div class="card-header bg-white border-bottom p-4">
+      <h2 class="h4 fw-bold mb-0" style="color: #0284C7;">
+        Create New Examination Card
+      </h2>
+    </div>
 
-    <label for="name"> Examination name</label>
-    <input 
-    type="text" 
-    name="name" 
-    id="name"
-    required>
+    <!-- Form Body -->
+    <div class="card-body p-4">
+      <form action="/info" method="post">
 
-<br>
-    <label for="duration"> expected duration</label>
-    <input 
-    type="number"
-     name="duration"
-      id="duration"
-      required>
-<br>
+        <!-- Examination name ==================-->
+        <div class="mb-3">
+          <label for="name" class="form-label fw-semibold text-secondary">Examination Name</label>
+          <input 
+            type="text" 
+            name="name" 
+            id="name" 
+            class="form-control" 
+            required
+          >
+        </div>
 
-    <label for="radiologyUnit">Select Radiology Unit:   </label>
-    <select name="radiologyUnit" id="radiologyUnit"      required>
+        <!-- duration & Radiology Unit============== -->
+        <div class="row g-3 mb-3">
+          
+          <!-- Expected Duration -->
+          <div class="col-md-6">
+            <label for="duration" class="form-label fw-semibold text-secondary">Expected Duration (Mins)</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light">⏱️</span>
+              <input 
+                type="number" 
+                name="duration" 
+                id="duration" 
+                class="form-control" 
+                 
+                required
+              >
+            </div>
+          </div>
 
-    <option value="general-xray">general-xray</option>
-    <option value="CT">CT</option>
-    <option value="MRI">MRI</option>
-    <option value="US">Ultrasound (US)</option>
-    <option value="fluor">Fluoroscopy (fluor)</option>
-    <option value="BMD">Bone Mineral Density (BMD)</option>
+          <!-- Select Radiology Unit -->
+          <div class="col-md-6">
+            <label for="radiologyUnit" class="form-label fw-semibold text-secondary">Radiology Unit</label>
+            <select name="radiologyUnit" id="radiologyUnit" class="form-select" required>
+              <option value="" disabled selected>Select Modality...</option>
+              <option value="general-xray">General X-Ray</option>
+              <option value="CT">CT Scan</option>
+              <option value="MRI">MRI</option>
+              <option value="US">Ultrasound (US)</option>
+              <option value="fluor">Fluoroscopy (Fluor)</option>
+              <option value="BMD">Bone Mineral Density (BMD)</option>
+            </select>
+          </div>
 
-    </select>
-<br>
+        </div>
 
-    <label for="notice"> important notice</label>
-    <input type="text" name="notice" id="notice">
-    <input type="text" name="notice" id="notice">
-    <input type="text" name="notice" id="notice">
-    <input type="text" name="notice" id="notice">
+        <!-- Important Notices (Multiple Inputs) -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold text-secondary">Important Preparation Notices</label>
+          <div class="d-flex flex-column gap-2">
+            <input type="text" name="notice" class="form-control" >
+            <input type="text" name="notice" class="form-control">
+            <input type="text" name="notice" class="form-control" >
+            <input type="text" name="notice" class="form-control" >
+          </div>
+          
+        </div>
 
-<br>
-    <label for="generalInfo">Add General Info:</label>
-    <textarea 
-    name="generalInfo"
-    id="generalInfo" 
-    required>
-    </textarea>
-<br>
-<button type="submit"> Creat info card </button>
+        <!-- General Info Textarea -->
+        <div class="mb-4">
+          <label for="generalInfo" class="form-label fw-semibold text-secondary">General Overview & Instructions</label>
+          <textarea 
+            name="generalInfo" 
+            id="generalInfo" 
+            class="form-control" 
+            rows="4" 
+            required
+          ></textarea>
+        </div>
 
-</form>
+        <!-- Submit Button -->
+        <div class="d-grid">
+        <button type="submit" class="btn btn-primary py-2 fs-6 fw-semibold">
+        Create Info Card
+        </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>
     
 </body>
 </html>
