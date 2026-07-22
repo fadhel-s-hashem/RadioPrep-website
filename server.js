@@ -84,6 +84,13 @@ app.put('/info/:infoId' , infoCtrl.updatedInfo)
 app.post('/info/:infoId/comment' , commentCtrl.createComment)
 app.delete('/info/:infoId/comment/:commentId' , commentCtrl.deleteComment)
 
+// error Route=========================================
+app.get('/*splat' , (req,res) => {
+    res.render('error.ejs' , {
+        msg: 404
+    })
+})
+
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });

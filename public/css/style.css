@@ -269,3 +269,7 @@ margin-left: 2dvh;
 #passkey{
 display: none;
 }
+
+.homeCard-title{
+    text-align: center;
+}
